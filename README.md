@@ -24,6 +24,7 @@ Viewbox is the "inside" dimensions, the viewport.
 <circle cx="0" cy="20" r="70" fill="#D1495B" />
 <rect x="-17.5" y="-65" width="35" height="20" fill="#F79257" />
 <polygon points="0,0 80,120 -80,120" fill="#234236" />
+<text id="sometext" x="0" y="0">Write here</text>
 ```
 
 ## Common properties
@@ -148,3 +149,56 @@ function animate() {
 
 requestAnimationFrame(animate);
 ```
+
+You can add event handlers too.
+
+# Animation
+
+Very simple example:
+
+```
+<svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+ <rect width="10" height="10">
+   <animate
+     attributeName="rx"
+     values="0;5;0"
+     dur="10s"
+     repeatCount="indefinite" />
+ </rect>
+</svg>
+```
+
+Some attributes:
+Animation timing:
+
+- begin
+- dur
+- end
+- min
+- max
+- restart
+- repeatCount
+- repeatDur
+- fill
+
+Value:
+
+- calcMode
+- values
+- keyTimes
+- keySplines
+- from
+- to
+- by
+
+Other:
+
+- attributeName
+- additive
+- accumulate
+
+Events:
+
+- onbegin
+- onend
+- onrepeat
