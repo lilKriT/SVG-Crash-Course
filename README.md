@@ -202,3 +202,88 @@ Events:
 - onbegin
 - onend
 - onrepeat
+
+# Gradients
+
+## Linear
+
+Put them in <defs>
+
+```
+<linearGradient id="Gradient1">
+    <stop class="stop1" offset="0%" />
+    <stop class="stop2" offset="50%" />
+    <stop class="stop3" offset="100%" />
+</linearGradient>
+```
+
+Then style:
+
+```
+<style>
+    <![CDATA[
+            #rect1 { fill: url(#Gradient1); }
+            .stop1 { stop-color: red; }
+            .stop2 { stop-color: black; stop-opacity: 0; }
+            .stop3 { stop-color: blue; }
+        ]]>
+</style>
+```
+
+And insert as fill:
+`fill="url(#Gradient2)"`
+
+## Radial
+
+```
+<radialGradient id="RadialGradient1">
+    <stop offset="0%" stop-color="red" />
+    <stop offset="100%" stop-color="blue" />
+</radialGradient>
+```
+
+They can have separate center and focal point, spread etc...
+
+### Example of advanced gradients:
+
+```
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+   <defs>
+      <linearGradient id='a' gradientUnits='objectBoundingBox' x1='0' y1='0' x2='1' y2='1'>
+         <stop offset='0' stop-color='red'>
+            <animate attributeName="stop-color"
+               values="red;purple;blue;green;yellow;orange;red;" dur="20s" repeatCount="indefinite">
+            </animate>
+         </stop>
+         <stop offset='.5' stop-color='purple'>
+            <animate attributeName="stop-color"
+               values="purple;blue;green;yellow;orange;red;purple;" dur="20s" repeatCount="indefinite">
+            </animate>
+         </stop>
+         <stop offset='1' stop-color='blue'>
+            <animate attributeName="stop-color"
+               values="blue;green;yellow;orange;red;purple;blue;" dur="20s" repeatCount="indefinite">
+            </animate>
+         </stop>
+         <animateTransform attributeName="gradientTransform" type="rotate" from="0 .5 .5" to="360 .5 .5"
+            dur="20s" repeatCount="indefinite" />
+      </linearGradient>
+      <linearGradient id='b' gradientUnits='objectBoundingBox' x1='0' y1='1' x2='1' y2='1'>
+         <stop offset='0' stop-color='red'>
+            <animate attributeName="stop-color"
+               values="red;purple;blue;green;yellow;orange;red;" dur="20s" repeatCount="indefinite">
+            </animate>
+         </stop>
+         <stop offset='1' stop-color='purple' stop-opacity="0">
+            <animate attributeName="stop-color"
+               values="purple;blue;green;yellow;orange;red;purple;" dur="20s" repeatCount="indefinite">
+            </animate>
+         </stop>
+         <animateTransform attributeName="gradientTransform" type="rotate" values="360 .5 .5;0 .5 .5" class="ignore"
+            dur="10s" repeatCount="indefinite" />
+      </linearGradient>
+   </defs>
+   <rect fill='url(#a)' width='100%' height='100%' />
+   <rect fill='url(#b)' width='100%' height='100%' />
+</svg>
+```
