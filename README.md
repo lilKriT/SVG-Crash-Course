@@ -37,3 +37,75 @@ Viewbox is the "inside" dimensions, the viewport.
 - r - circle radius
 - x, y, width, height - rectangle dimensions
 - points - points in a polygon
+
+## Groups
+
+```
+<g></g>
+```
+
+You can put elements in a group to transform them together.
+
+## Transforms
+
+```
+transform="translate (0 5)"
+transform="rotate (72)"
+```
+
+## Reusing code
+
+```
+<defs>
+    <path id="reuseThis" d="..." stroke="..." />
+</defs>
+
+// Later
+<use href="#reuseThis" transform="rotate(60)">
+<use href="#reuseThis" transform="rotate(120)">
+<use href="#reuseThis" transform="rotate(180)">
+```
+
+## Paths
+
+```
+<path
+      id="branch"
+      d="
+        M 0 0 L 0 -90
+        M 0 -20 L 20 -34
+        M 0 -20 L -20 -34
+        M 0 -40 L 20 -54
+        M 0 -40 L -20 -54
+        M 0 -60 L 20 -74
+        M 0 -60 L -20 -74"
+      stroke="#E5C39C"
+      stroke-width="5"
+    />
+```
+
+d - stands for draw
+each command starts with a letter that defines command type, and then coordinates.
+M - move to
+L - line to
+
+They can use Bezier curves too.
+
+```
+<path
+    id="squiggly"
+    d="
+    M 0 0
+    Q 5 -75 0 -70
+    Q -10 -65 0 -60
+    ...
+    "
+    stroke="black"
+    stroke-width="2"
+/>
+```
+
+Command - control coords - end coords
+Q - quadratic bezier
+C - cubic bezier (same but has 2 control points instead of 1)
+`C 40 -60 -40 -60 -40 10`
