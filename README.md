@@ -109,3 +109,42 @@ Command - control coords - end coords
 Q - quadratic bezier
 C - cubic bezier (same but has 2 control points instead of 1)
 `C 40 -60 -40 -60 -40 10`
+
+## Strokes
+
+- stroke-dasharray (if you set one number, it will make a dashed stroke of equal lenghts. Two numbers - dash and gap length. Or you can even use more numbers, then they will alternate)
+- stroke-dashoffset - offsets where the drawing of first element starts.
+- pathLength - it creates a virtual circumference of the path (like viewport for dimensions)
+
+## CSS attributes
+
+In general if something defines the style - you can use CSS. If it defines shape - you can't use CSS.
+
+# Using JS with SVG
+
+Assign an ID to element.
+Then just use JS:
+
+```js
+hoursElement.setAttribute("transform", `rotate(${(360 / 12) * hour})`);
+```
+
+And then animate it:
+
+```js
+function animate() {
+  const date = new Date();
+
+  const hour = date.getHours() % 12;
+  const minute = date.getMinutes();
+  const second = date.getSeconds();
+
+  hoursElement.setAttribute("transform", `rotate(${(360 / 12) * hour})`);
+  minutesElement.setAttribute("transform", `rotate(${(360 / 60) * minute})`);
+  secondsElement.setAttribute("transform", `rotate(${(360 / 60) * second})`);
+
+  requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
+```
